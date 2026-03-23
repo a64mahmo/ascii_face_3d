@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASCII Face Renderer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="terminal">
+        
+        <div class="terminal-bar">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+          <span class="title">ascii_face_renderer — drag to rotate in 3D</span>
+        </div>
+
+        <video id="vid" autoplay muted playsinline></video>
+        <canvas id="cnv"></canvas>
+
+        <div id="scene">
+          <div id="startScreen">
+            <div class="icon">▣</div>
+            <div class="text">
+              click to enable camera<br />
+              <span>your face will be rendered live in ASCII</span>
+            </div>
+            <button id="startBtn" onclick="startCamera()">
+              [ enable camera ]
+            </button>
+          </div>
+
+          <pre id="ascii"></pre>
+          <div id="overlay"></div>
+        </div>
+
+        <div id="controls">
+          <div class="control-group">
+            <span>density</span>
+            <input type="range" id="density" min="40" max="120" value="72" step="4" />
+            <span id="densVal">72</span>
+          </div>
+
+          <div class="control-group">
+            <span>color</span>
+            <button class="clr-btn active" onclick="setColor('#00ff41', this)"></button>
+            <button class="clr-btn" onclick="setColor('#ffffff', this)"></button>
+            <button class="clr-btn" onclick="setColor('#ffd600', this)"></button>
+            <button class="clr-btn" onclick="setColor('#ff4466', this)"></button>
+            <button class="clr-btn" onclick="setColor('#44aaff', this)"></button>
+          </div>
+
+          <div class="control-group">
+            <span>invert</span>
+            <input type="checkbox" id="invertChk" />
+          </div>
+
+          <div class="control-group">
+            <span>scanlines</span>
+            <input
+              type="checkbox"
+              id="scanlinesChk"
+              onchange="document.getElementById('overlay').style.display = this.checked ? 'block' : 'none'"
+            />
+          </div>
+
+          <button class="reset-btn" onclick="resetRotation()">reset 3D</button>
+        </div>
+
+      </div>
+
+      <div class="footer">drag the ASCII image to rotate in 3D</div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
